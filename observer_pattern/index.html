@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      class 발행기관 {
+        //내부에 변화가 있을 경우 구독자에게 알려준다.
+        #state;
+        #observers = new Set();
+
+        constructor(state) {
+          this.#state = state;
+          // getter를 사용하여 상태에 접근할수있도록한다. => 객체의 내부상태를 외부에서 직접 조작하지 못하도록 보호한다.
+          Object.keys(state).forEach((key) =>
+            Object.defineProperty(this, key, {
+              get: () => this.#state[key],
+            })
+          );
+        }
+
+        내부에_변화가_생김(newState) {
+          this.#state = { ...this.#state, ...newState };
+          this.구독자에게_알림();
+        }
+
+        구독자_등록(subscriber) {
+          this.#observers.add(subscriber);
+        }
+
+        구독자에게_알림() {
+          this.#observers.forEach((fn) => fn());
+        }
+      }
+
+      class 구독자 {
+        // 발행기관을 구독하고 변화가생겼을떄 하는일을 정의한다.
+        #fn;
+
+        constructor(발행기관에_변화가_생길_때_하는_일) {
+          this.#fn = 발행기관에_변화가_생길_때_하는_일;
+        }
+
+        구독(publisher) {
+          console.log(publisher);
+          publisher.구독자_등록(this.#fn);
+        }
+      }
+
+      const 상태 = new 발행기관({
+        a: 10,
+        b: 20,
+      });
+
+      const 덧셈계산기 = new 구독자(() =>
+        console.log(`a + b = ${상태.a + 상태.b}`)
+      );
+      const 곱셈계산기 = new 구독자(() =>
+        console.log(`a * b = ${상태.a * 상태.b}`)
+      );
+
+      덧셈계산기.구독(상태);
+      곱셈계산기.구독(상태);
+
+      상태.구독자에게_알림();
+
+      상태.내부에_변화가_생김({ a: 100, b: 200 });
+    </script> -->
+    <!-- <div id="app"></div>
+    <script type="module" src="main.js"></script> -->
+  </body>
+</html>
