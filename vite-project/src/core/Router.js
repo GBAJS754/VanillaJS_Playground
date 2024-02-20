@@ -1,4 +1,4 @@
-import { ROUTES, ROUTE_CHANGE_EVENT_NAME } from "../constants/routes";
+import { ROUTES, ROUTE_CHANGE_EVENT_NAME } from "../constants";
 import { NotFoundPage } from "../pages";
 
 export default class Router {

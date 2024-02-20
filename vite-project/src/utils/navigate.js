@@ -1,4 +1,4 @@
-import { ROUTE_CHANGE_EVENT_NAME } from "../constants/routes";
+import { ROUTE_CHANGE_EVENT_NAME } from "../constants";
 
 export const push = (nextUrl) => {
   window.dispatchEvent(

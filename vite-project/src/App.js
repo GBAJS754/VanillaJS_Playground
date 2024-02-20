@@ -1,5 +1,6 @@
-import SideBar from "./components/SideBar";
-import { Component, Router } from "./core";
+import SideBar from "./components/SideBar/index.js";
+import { Component, Router } from "./core.js";
+import { $ } from "./utils/dom.js";
 
 class App extends Component {
   template() {
@@ -10,8 +11,8 @@ class App extends Component {
   }
 
   mounted() {
-    const $sidebar = document.querySelector("#sidebar");
-    const $page = document.querySelector("#page");
+    const $sidebar = $("#sidebar");
+    const $page = $("#page");
 
     new SideBar($sidebar);
     new Router($page);
