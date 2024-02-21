@@ -1,7 +1,7 @@
 import { ROUTES, ROUTE_CHANGE_EVENT_NAME } from "../constants";
 import { NotFoundPage } from "../pages";
 
-export default class Router {
+class Router {
   constructor($container) {
     this.$container = $container;
     this.route();
@@ -31,3 +31,4 @@ export default class Router {
     });
   }
 }
+export default Router;
