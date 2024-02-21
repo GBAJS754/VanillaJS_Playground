@@ -1,4 +1,5 @@
 import { Component } from "../../core";
+import { PostStore } from "../../store/PostStore";
 import { $ } from "../../utils/dom";
 import PostList from "./PostList";
 
@@ -7,7 +8,7 @@ class SideBar extends Component {
     return `
        <h3>다은의 Notion</h3>
        <article id="posts"></article>
-       <div class=footer">푸터입니다.</div>
+       <div class="footer">푸터입니다.</div>
       `;
   }
 
@@ -15,7 +16,11 @@ class SideBar extends Component {
     new PostList($("#posts"));
   }
 
-  setEvent() {}
+  setEvent() {
+    this.addEvent("click", ".footer", (e) => {
+      PostStore.dispatch({ actionType: "POST_POST" });
+    });
+  }
 }
 
 export default SideBar;

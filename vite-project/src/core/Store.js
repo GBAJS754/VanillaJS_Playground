@@ -20,7 +20,7 @@ class createStore {
   }
 
   subscribe(listener) {
-    handler.push(listener);
+    this.handler.push(listener);
   }
 }
 
