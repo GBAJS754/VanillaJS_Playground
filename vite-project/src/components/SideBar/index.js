@@ -1,5 +1,5 @@
 import { Component } from "../../core";
-import { PostStore } from "../../store/PostStore";
+import { PostListStore } from "../../store/PostListStore";
 import { $ } from "../../utils/dom";
 import PostList from "./PostList";
 
@@ -18,7 +18,7 @@ class SideBar extends Component {
 
   setEvent() {
     this.addEvent("click", ".footer", (e) => {
-      PostStore.dispatch({ actionType: "POST_POST" });
+      PostListStore.dispatch({ actionType: "POST_POST" });
     });
   }
 }

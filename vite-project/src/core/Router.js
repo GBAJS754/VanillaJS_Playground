@@ -5,6 +5,7 @@ class Router {
   constructor($container) {
     this.$container = $container;
     this.route();
+    this.init();
   }
 
   route() {

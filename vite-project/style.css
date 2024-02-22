@@ -1,3 +1,10 @@
 .hide {
   display: none;
 }
+
+#sidebar {
+  background-color: aliceblue;
+}
+#page {
+  background-color: antiquewhite;
+}

@@ -1,16 +1,17 @@
 import { Component } from "../../core";
+import { PostListStore } from "../../store/PostListStore";
 import { PostStore } from "../../store/PostStore";
-import { OPENED_DOCUMENTS, getItem, updateStorage } from "../../utils";
+import { OPENED_DOCUMENTS, getItem, push, updateStorage } from "../../utils";
 
 class PostList extends Component {
   setup() {
-    PostStore.subscribe(this.render.bind(this));
+    PostListStore.subscribe(this.render.bind(this));
   }
 
   template() {
-    const postList = PostStore.getState()?.postList;
+    const postList = PostListStore.getState()?.postList;
     const openedDoc = getItem(OPENED_DOCUMENTS, []);
-
+    if (!postList) return `로딩중`;
     const createPostList = (currentPost) => {
       return currentPost
         ?.map(({ title, documents, id }) => {
@@ -42,18 +43,21 @@ class PostList extends Component {
     this.addEvent("click", "ul", (e) => {
       const $ul = e.target.closest("ul");
       const id = $ul.dataset.id;
+      console.log(e.target.className);
       switch (e.target.className) {
         case "addBtn":
-          PostStore.dispatch({ actionType: "POST_POST", data: id });
+          PostListStore.dispatch({ actionType: "POST_POST", data: id });
           updateStorage("add", id);
           break;
         case "deleteBtn":
-          PostStore.dispatch({ actionType: "DELETE_POST", data: id });
+          PostListStore.dispatch({ actionType: "DELETE_POST", data: id });
           break;
         case "toggleBtn":
           updateStorage("toggle", id);
           this.render();
           break;
+        default:
+          push(`/documents/${id}`);
       }
     });
   }
