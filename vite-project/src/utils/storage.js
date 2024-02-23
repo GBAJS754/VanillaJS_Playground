@@ -17,12 +17,23 @@ export const setItem = (key, value) => {
 export const updateStorage = (action, id) => {
   const openedDoc = getItem(OPENED_DOCUMENTS, []);
   const index = openedDoc.indexOf(id);
+  const addOpenedDoc = () => {
+    setItem(OPENED_DOCUMENTS, [...openedDoc, id]);
+  };
+  const deleteOpenedDoc = () => {
+    openedDoc.splice(index, 1);
+    setItem(OPENED_DOCUMENTS, [...openedDoc]);
+  };
 
-  if (index === -1) setItem(OPENED_DOCUMENTS, [...openedDoc, id]);
-  else {
-    if (action === "toggle") {
-      openedDoc.splice(index, 1);
-      setItem(OPENED_DOCUMENTS, [...openedDoc]);
-    }
+  switch (action) {
+    case "add":
+      if (index === -1) addOpenedDoc();
+      break;
+    case "toggle":
+      index === -1 ? addOpenedDoc() : deleteOpenedDoc();
+      break;
+    case "delete":
+      deleteOpenedDoc();
+      break;
   }
 };

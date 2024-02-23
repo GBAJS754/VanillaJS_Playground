@@ -1,5 +1,7 @@
 import { Component } from "../core";
+import { PostListStore } from "../store/PostListStore";
 import { PostStore } from "../store/PostStore";
+import debounce from "../utils/debounce";
 
 class Editor extends Component {
   setup() {
@@ -23,19 +25,27 @@ class Editor extends Component {
   }
 
   setEvent() {
-    this.addEvent("keyup", "#editor", async (e) => {
-      const { target } = e;
-      const name = target.className;
-      const newData = {
-        ...PostStore.getState()?.post,
-        [name]: e.target.value,
-      };
+    this.addEvent(
+      "keyup",
+      "#editor",
+      debounce(async (e) => {
+        const { target } = e;
+        const name = target.className;
+        const newData = {
+          ...PostStore.getState()?.post,
+          [name]: e.target.value,
+        };
 
-      await PostStore.dispatch({
-        actionType: "PUT_POST",
-        data: { ...newData },
-      });
-    });
+        await PostStore.dispatch({
+          actionType: "PUT_POST",
+          data: { ...newData },
+        });
+
+        await PostListStore.dispatch({
+          actionType: "FETCH_POST_LIST",
+        });
+      })
+    );
   }
 }
 
